@@ -1,0 +1,1 @@
+print("Burr prediction model")
