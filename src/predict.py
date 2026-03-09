@@ -7,12 +7,12 @@ print("\n==========================================")
 print("   BURR HEIGHT PREDICTION SYSTEM (ML)")
 print("==========================================\n")
 
-# Load trained model
+
 print("Loading trained model...")
 model = joblib.load("../model/burr_prediction_model.pkl")
 print("Model loaded successfully!\n")
 
-# ---- USER INPUT ----
+
 
 ss = float(input("Enter Spindle Speed (SS): "))
 fr = float(input("Enter Feed Rate (FR): "))
@@ -50,7 +50,7 @@ table = [
 
 print(tabulate(table, headers="firstrow", tablefmt="fancy_grid"))
 
-# ---- ERROR CALCULATION ----
+
 
 choice = input("\nDo you want to calculate percentage error? (y/n): ")
 
