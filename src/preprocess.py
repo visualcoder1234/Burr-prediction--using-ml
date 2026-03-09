@@ -1,27 +1,11 @@
 import pandas as pd
 
-print("Dataset loaded for preprocessing")
+def preprocess_data():
 
-df = pd.read_csv("../data/cleaned_dataset.csv")
+    print("\nStep 2: Preprocessing dataset")
 
-# Remove spaces in column names
-df.columns = df.columns.str.strip()
+    df = pd.read_csv("data/cleaned_dataset.csv")
 
-print(df.columns)
+    print("Dataset loaded for preprocessing")
 
-# Convert drill type to numbers
-df['D'] = df['D'].astype('category').cat.codes
-
-# Features
-X = df[['SS','FR','DD','D']]
-
-# Targets (all materials)
-y = df[['AL','SiC','Neat']]
-
-print("Features:")
-print(X.head())
-
-print("Targets:")
-print(y.head())
-
-print("Preprocessing complete")
+    return df

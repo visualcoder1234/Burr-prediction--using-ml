@@ -1,29 +1,24 @@
 import pandas as pd
 
-# Load dataset
-file_path = "../data/burr_ct_dataset.xlsx"
+def clean_dataset():
 
-df = pd.read_excel(file_path)
+    print("\nStep 1: Cleaning dataset")
 
-print("Dataset loaded successfully!\n")
+    df = pd.read_excel("data/burr_ct_dataset.xlsx")
 
-# Show first rows
-print(df.head())
+    print("Original Shape:", df.shape)
 
-print("\nOriginal Shape:", df.shape)
+    # remove unwanted columns
+    df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 
-# Remove columns that start with 'Unnamed'
-df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+    # remove fully empty rows
+    df = df.dropna(how="all")
 
-# Drop rows with many missing values
-df = df.dropna(how='all')
+    print("Cleaned Shape:", df.shape)
 
-# Reset index
-df = df.reset_index(drop=True)
+    df.to_csv("data/cleaned_dataset.csv", index=False)
 
-print("\nCleaned Shape:", df.shape)
+    print("Cleaned dataset saved")
 
-# Save cleaned dataset
-df.to_csv("../data/cleaned_dataset.csv", index=False)
+    return df
 
-print("\nCleaned dataset saved as cleaned_dataset.csv")
